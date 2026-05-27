@@ -28,17 +28,20 @@ app.use('/css', express.static(path.join(__dirname, 'css')));
 app.use('/js', express.static(path.join(__dirname, 'js')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-// Página principal
+// Servir carpeta pages directamente (para acceder con /pages/archivo.html)
+app.use('/pages', express.static(path.join(__dirname, 'pages')));
+
+// Ruta raíz → index.html
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'pages', 'index.html'));
 });
 
-// Página torneos
+// Ruta limpia para torneos
 app.get('/torneos', (req, res) => {
   res.sendFile(path.join(__dirname, 'pages', 'torneos.html'));
 });
 
-// Página jugadores
+// Ruta limpia para jugadores
 app.get('/jugadores', (req, res) => {
   res.sendFile(path.join(__dirname, 'pages', 'jugadores.html'));
 });
