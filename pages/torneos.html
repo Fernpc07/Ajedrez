@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Torneos – Ajedrez Real</title>
+    <link rel="stylesheet" href="../css/estilos.css" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♟</text></svg>" />
+    <style>
+        .ranking-card {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid #2a2a2a;
+            transition: background 0.2s;
+        }
+
+        .ranking-card:hover {
+            background: #1a1a1a;
+        }
+
+        .ranking-pos {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #333;
+            width: 50px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .ranking-pos.top1 {
+            color: #f0f0f0;
+        }
+
+        .ranking-pos.top2 {
+            color: #888;
+        }
+
+        .ranking-pos.top3 {
+            color: #666;
+        }
+
+        .ranking-avatar {
+            font-size: 2rem;
+            flex-shrink: 0;
+            filter: grayscale(1);
+        }
+
+        .ranking-info {
+            flex: 1;
+        }
+
+        .ranking-info h4 {
+            color: #f0f0f0;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .ranking-info p {
+            font-size: 0.8rem;
+            color: #888;
+            margin: 0;
+        }
+
+        .ranking-elo {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #f0f0f0;
+        }
+
+        .badge-torneo {
+            display: inline-block;
+            padding: 2px 10px;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            border: 1px solid #2a2a2a;
+            color: #888;
+        }
+
+        .badge-abierto {
+            border-color: #f0f0f0;
+            color: #f0f0f0;
+        }
+
+        .badge-cerrado {
+            border-color: #444;
+            color: #444;
+        }
+
+        .badge-proximo {
+            border-color: #666;
+            color: #666;
+        }
+
+        .estado-bd {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 6px;
+            animation: parpadeo 2s infinite;
+            background: #f0f0f0;
+        }
+
+        .panel-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1px;
+            background: #2a2a2a;
+            border: 1px solid #2a2a2a;
+            margin: 2rem 0;
+        }
+
+        .panel-stat {
+            padding: 2rem 1.5rem;
+            background: #111;
+            text-align: center;
+        }
+
+        .panel-stat .num {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #f0f0f0;
+            display: block;
+            letter-spacing: -1px;
+        }
+
+        .panel-stat .lbl {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-logo">AJ<br>ED</a>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.html#piezas">Piezas</a></li>
+            <li><a href="index.html#historia">Historia</a></li>
+            <li><a href="index.html#tablero">Tablero</a></li>
+            <li><a href="index.html#inscripcion">Inscripción</a></li>
+            <li><a href="torneos.html" class="activo">Torneos</a></li>
+        </ul>
+    </nav>
+
+    <header style="padding:8rem 3rem 5rem;border-bottom:1px solid #2a2a2a;">
+        <p style="font-size:0.65rem;letter-spacing:5px;text-transform:uppercase;color:#888;margin-bottom:1.5rem;">
+            Competición oficial</p>
+        <h1
+            style="font-size:clamp(3rem,8vw,7rem);font-weight:900;text-transform:uppercase;letter-spacing:-2px;line-height:0.9;color:#f0f0f0;">
+            Torneos<br><span style="color:#444;">& Ranking</span>
+        </h1>
+        <p style="max-width:480px;margin:2rem 0 0;color:#888;font-size:0.9rem;line-height:1.8;">
+            Consulta los torneos disponibles, el ranking de jugadores y las estadísticas del club.
+        </p>
+    </header>
+
+    <section class="seccion animar-entrada">
+        <div class="panel-info">
+            <div class="panel-stat">
+                <span class="num" id="stat-jugadores">—</span>
+                <span class="lbl">Jugadores activos</span>
+            </div>
+            <div class="panel-stat">
+                <span class="num" id="stat-torneos">—</span>
+                <span class="lbl">Torneos en 2025</span>
+            </div>
+            <div class="panel-stat">
+                <span class="num" id="stat-partidas">—</span>
+                <span class="lbl">Partidas jugadas</span>
+            </div>
+            <div class="panel-stat">
+                <span class="num" style="font-size:2rem;">♛</span>
+                <span class="lbl">Ajedrez Real Club</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="seccion animar-entrada" style="border-top:1px solid #2a2a2a;">
+        <p class="seccion-titulo">Calendario de <span>Torneos</span></p>
+        <div class="separador"></div>
+
+        <p style="font-size:0.75rem;color:#666;margin-bottom:1.5rem;letter-spacing:1px;">
+            <span class="estado-bd"></span>
+            MySQL · tabla <code style="color:#888;font-size:0.75rem;">torneos</code>
+        </p>
+
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.5rem;">
+            <button class="btn-filtro btn-secundario activo-filtro" data-filtro="todos"
+                style="padding:8px 20px;font-size:0.65rem;">Todos</button>
+            <button class="btn-filtro btn-secundario" data-filtro="Abierto"
+                style="padding:8px 20px;font-size:0.65rem;">Abiertos</button>
+            <button class="btn-filtro btn-secundario" data-filtro="Próximo"
+                style="padding:8px 20px;font-size:0.65rem;">Próximos</button>
+            <button class="btn-filtro btn-secundario" data-filtro="Cerrado"
+                style="padding:8px 20px;font-size:0.65rem;">Cerrados</button>
+        </div>
+
+        <div class="tabla-contenedor">
+            <table class="tabla-ajedrez">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre del torneo</th>
+                        <th>Modalidad</th>
+                        <th>Fecha</th>
+                        <th>Inscritos</th>
+                        <th>Premio</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-torneos">
+                    <tr>
+                        <td colspan="7"
+                            style="text-align:center;color:#444;padding:3rem;font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;">
+                            Cargando desde MySQL…
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="seccion animar-entrada" style="border-top:1px solid #2a2a2a;">
+        <p class="seccion-titulo"><span>Ranking</span> de Jugadores</p>
+        <div class="separador"></div>
+
+        <p style="font-size:0.75rem;color:#666;margin-bottom:2rem;letter-spacing:1px;">
+            <span class="estado-bd"></span>
+            MySQL · tabla <code style="color:#888;font-size:0.75rem;">jugadores</code> ORDER BY elo DESC
+        </p>
+
+        <div style="border:1px solid #2a2a2a;" id="lista-ranking">
+            <div class="ranking-card"
+                style="justify-content:center;color:#444;font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;">
+                Cargando desde MySQL…
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">Ajedrez Real</div>
+        <ul class="footer-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.html#piezas">Piezas</a></li>
+            <li><a href="index.html#historia">Historia</a></li>
+            <li><a href="index.html#inscripcion">Inscripción</a></li>
+            <li><a href="torneos.html">Torneos</a></li>
+        </ul>
+        <p class="footer-copy">© 2026 Ajedrez</p>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/torneos.js"></script>
+</body>
+
+</html>

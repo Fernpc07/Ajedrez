@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajedrez Real</title>
+    <link rel="stylesheet" href="/css/estilos.css" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♟</text></svg>" />
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-logo">AJ<br>EZ</a>
+        <ul>
+            <li><a href="index.html" class="activo">Inicio</a></li>
+            <li><a href="#piezas">Piezas</a></li>
+            <li><a href="#historia">Historia</a></li>
+            <li><a href="#tablero">Tablero</a></li>
+            <li><a href="#inscripcion">Inscripción</a></li>
+            <li><a href="/pages/torneos.html">Torneos</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <p class="hero-subtitulo">El juego de los reyes</p>
+        <h1>Ajedrez</h1>
+        <p class="hero-desc">
+            Estrategia, táctica y arte en 64 casillas. Aprende las reglas,
+            conoce las piezas y juega tu mejor partida.
+        </p>
+        <div>
+            <a href="#piezas" class="btn-principal">Explorar</a>
+            <a href="/pages/torneos.html" class="btn-secundario">Torneos</a>
+        </div>
+    </header>
+
+    <section class="seccion animar-entrada" id="piezas" style="border-bottom:1px solid #2a2a2a;">
+        <p class="seccion-titulo">Las <span>Piezas</span></p>
+        <div class="separador"></div>
+        <p class="seccion-desc">
+            Cada pieza tiene un rol único, un valor y una forma de moverse.
+            Conocer sus capacidades es el primer paso.
+        </p>
+
+        <div class="grid-piezas">
+            <div class="tarjeta-pieza">
+                <span class="pieza-icono">♔</span>
+                <span class="pieza-nombre">Rey</span>
+                <span class="pieza-valor">Invaluable</span>
+            </div>
+            <div class="tarjeta-pieza">
+                <span class="pieza-icono">♕</span>
+                <span class="pieza-nombre">Reina</span>
+                <span class="pieza-valor">9 puntos</span>
+            </div>
+            <div class="tarjeta-pieza">
+                <span class="pieza-icono">♖</span>
+                <span class="pieza-nombre">Torre</span>
+                <span class="pieza-valor">5 puntos</span>
+            </div>
+            <div class="tarjeta-pieza">
+                <span class="pieza-icono">♗</span>
+                <span class="pieza-nombre">Alfil</span>
+                <span class="pieza-valor">3 puntos</span>
+            </div>
+            <div class="tarjeta-pieza">
+                <span class="pieza-icono">♘</span>
+                <span class="pieza-nombre">Caballo</span>
+                <span class="pieza-valor">3 puntos</span>
+            </div>
+            <div class="tarjeta-pieza">
+                <span class="pieza-icono">♙</span>
+                <span class="pieza-nombre">Peón</span>
+                <span class="pieza-valor">1 punto</span>
+            </div>
+        </div>
+
+        <h3 style="margin-top:4rem;">Movimientos y capturas</h3>
+        <div class="tabla-contenedor">
+            <table class="tabla-ajedrez">
+                <thead>
+                    <tr>
+                        <th>Pieza</th>
+                        <th>Movimiento</th>
+                        <th>Alcance</th>
+                        <th>Movimiento especial</th>
+                        <th>Nivel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge-pieza">♔</span>Rey</td>
+                        <td>Cualquier dirección</td>
+                        <td>1 casilla</td>
+                        <td>Enroque</td>
+                        <td class="nivel-avanzado">Crítico</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge-pieza">♕</span>Reina</td>
+                        <td>Horizontal, vertical, diagonal</td>
+                        <td>Ilimitado</td>
+                        <td>—</td>
+                        <td class="nivel-avanzado">Avanzado</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge-pieza">♖</span>Torre</td>
+                        <td>Horizontal y vertical</td>
+                        <td>Ilimitado</td>
+                        <td>Enroque</td>
+                        <td class="nivel-medio">Medio</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge-pieza">♗</span>Alfil</td>
+                        <td>Diagonal únicamente</td>
+                        <td>Ilimitado</td>
+                        <td>—</td>
+                        <td class="nivel-medio">Medio</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge-pieza">♘</span>Caballo</td>
+                        <td>En forma de L (2+1)</td>
+                        <td>Fijo</td>
+                        <td>Salta piezas</td>
+                        <td class="nivel-medio">Medio</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge-pieza">♙</span>Peón</td>
+                        <td>Adelante, captura diagonal</td>
+                        <td>1–2 casillas</td>
+                        <td>Al paso · Promoción</td>
+                        <td class="nivel-basico">Básico</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem;">
+            <div>
+                <h3>Reglas fundamentales</h3>
+                <ul class="lista-estilo">
+                    <li>El objetivo es dar jaque mate al rey rival</li>
+                    <li>Las blancas mueven primero</li>
+                    <li>Solo puedes capturar piezas del oponente</li>
+                    <li>El rey no puede moverse a casillas en jaque</li>
+                    <li>El enroque requiere condiciones específicas</li>
+                    <li>La partida puede terminar en tablas</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Fases del juego</h3>
+                <ol class="lista-numerada">
+                    <li><strong>Apertura</strong> — Control del centro y desarrollo</li>
+                    <li><strong>Medio juego</strong> — Ataque, defensa y táctica</li>
+                    <li><strong>Final</strong> — Activación del rey y promoción</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <section class="seccion animar-entrada" id="historia" style="border-bottom:1px solid #2a2a2a;">
+        <p class="seccion-titulo">La <span>Historia</span></p>
+        <div class="separador"></div>
+
+        <blockquote class="cita-bloque">
+            El ajedrez es la gimnasia de la mente.
+            <cite>— Blaise Pascal</cite>
+        </blockquote>
+
+        <p>
+            El ajedrez tiene sus raíces en la <strong>India del siglo VI d.C.</strong>, donde fue conocido como
+            <em>chaturanga</em>. Pasó a Persia como <em>shatranj</em> y llegó a Europa a través del mundo árabe.
+            En el siglo XV se adoptaron las reglas modernas y en <strong>1886</strong> se disputó
+            el primer Campeonato Mundial oficial.
+        </p>
+
+        <h3 style="margin-top:3rem;">Wikipedia — Ajedrez</h3>
+        <div class="marco-contenedor">
+            <div class="marco-cabecera">
+                <div class="marco-dot" style="background:#333;"></div>
+                <div class="marco-dot" style="background:#444;"></div>
+                <div class="marco-dot" style="background:#555;"></div>
+                <span>es.wikipedia.org</span>
+            </div>
+            <iframe class="marco-iframe" src="https://es.wikipedia.org/wiki/Ajedrez" title="Wikipedia – Ajedrez"
+                loading="lazy" sandbox="allow-same-origin allow-scripts">
+            </iframe>
+        </div>
+
+        <p style="margin-top:1.5rem;">
+            <a href="https://www.fide.com" target="_blank" rel="noopener noreferrer" style="color:var(--blanco);">
+                Federación Internacional de Ajedrez (FIDE) ↗
+            </a>
+            &nbsp;·&nbsp;
+            <a href="https://www.chess.com/es" target="_blank" rel="noopener noreferrer" style="color:var(--blanco);">
+                Chess.com ↗
+            </a>
+        </p>
+    </section>
+
+    <section class="seccion animar-entrada" id="tablero" style="border-bottom:1px solid #2a2a2a;">
+        <p class="seccion-titulo">Tablero <span>Interactivo</span></p>
+        <div class="separador"></div>
+        <p class="seccion-desc">Posición inicial. Pasa el cursor sobre las casillas.</p>
+
+        <div class="tablero-svg-wrapper">
+            <div class="tablero-mini" id="tablero-mini" role="img" aria-label="Tablero de ajedrez"></div>
+        </div>
+
+        <div style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-top:2rem;">
+            <div id="reloj-blancas" style="text-align:center;padding:1.5rem 3rem;border:1px solid #2a2a2a;">
+                <div
+                    style="font-size:0.6rem;letter-spacing:4px;color:var(--gris);margin-bottom:0.5rem;text-transform:uppercase;">
+                    Blancas ♔</div>
+                <div id="tiempo-blancas"
+                    style="font-size:2.5rem;font-weight:900;color:var(--blanco);letter-spacing:-1px;">10:00</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;">
+                <button id="btn-reloj" class="btn-principal">Iniciar ▶</button>
+                <button id="btn-reset-reloj" class="btn-secundario">Reiniciar</button>
+            </div>
+            <div id="reloj-negras" style="text-align:center;padding:1.5rem 3rem;border:1px solid #2a2a2a;">
+                <div
+                    style="font-size:0.6rem;letter-spacing:4px;color:var(--gris);margin-bottom:0.5rem;text-transform:uppercase;">
+                    Negras ♚</div>
+                <div id="tiempo-negras"
+                    style="font-size:2.5rem;font-weight:900;color:var(--blanco);letter-spacing:-1px;">10:00</div>
+            </div>
+        </div>
+
+        <h3 style="margin-top:4rem;">Sonido de movimiento</h3>
+        <div class="audio-player">
+            <span class="audio-icono">♟</span>
+            <div class="audio-info">
+                <h4>Efecto de pieza</h4>
+                <p>Generado por Web Audio API</p>
+            </div>
+            <button class="btn-secundario" onclick="reproducirSonido()">▶ Reproducir</button>
+        </div>
+
+        <h3 style="margin-top:3rem;">Animación SVG — Peón avanzando</h3>
+        <div style="text-align:center;padding:2rem;background:var(--bg2);border:1px solid #2a2a2a;margin-top:1rem;">
+            <svg viewBox="0 0 200 120" width="300" xmlns="http://www.w3.org/2000/svg"
+                aria-label="Peón avanzando en el tablero">
+                <rect x="0" y="80" width="50" height="40" fill="#1a1a1a" />
+                <rect x="50" y="80" width="50" height="40" fill="#2a2a2a" />
+                <rect x="100" y="80" width="50" height="40" fill="#1a1a1a" />
+                <rect x="150" y="80" width="50" height="40" fill="#2a2a2a" />
+                <rect x="0" y="40" width="50" height="40" fill="#2a2a2a" />
+                <rect x="50" y="40" width="50" height="40" fill="#1a1a1a" />
+                <rect x="100" y="40" width="50" height="40" fill="#2a2a2a" />
+                <rect x="150" y="40" width="50" height="40" fill="#1a1a1a" />
+                <rect x="0" y="0" width="50" height="40" fill="#1a1a1a" />
+                <rect x="50" y="0" width="50" height="40" fill="#2a2a2a" />
+                <rect x="100" y="0" width="50" height="40" fill="#1a1a1a" />
+                <rect x="150" y="0" width="50" height="40" fill="#2a2a2a" />
+                <text font-size="28" text-anchor="middle" fill="#f0f0f0">
+                    <animateMotion dur="3s" repeatCount="indefinite" path="M 25,95 L 25,55 L 25,15" />
+                    ♙
+                </text>
+            </svg>
+        </div>
+    </section>
+
+    <section class="seccion animar-entrada" id="inscripcion">
+        <p class="seccion-titulo">Únete al <span>Club</span></p>
+        <div class="separador"></div>
+        <p class="seccion-desc">
+            Regístrate y participa en torneos, clases y eventos.
+        </p>
+
+        <form id="form-inscripcion" class="form-ajedrez" novalidate>
+
+            <div class="form-grupo">
+                <label for="nombre">Nombre completo *</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required autocomplete="name" />
+            </div>
+
+            <div class="form-grupo">
+                <label for="email">Correo electrónico *</label>
+                <input type="email" id="email" name="email" placeholder="tu@correo.com" required autocomplete="email" />
+            </div>
+
+            <div class="form-grupo">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="+52 000 000 0000" autocomplete="tel" />
+            </div>
+
+            <div class="form-grupo">
+                <label for="edad">Edad</label>
+                <input type="number" id="edad" name="edad" placeholder="18" min="5" max="120" />
+            </div>
+
+            <div class="form-grupo">
+                <label for="nivel">Nivel de juego *</label>
+                <select id="nivel" name="nivel" required>
+                    <option value="" disabled selected>— Selecciona —</option>
+                    <option value="principiante">Principiante (Elo &lt; 1000)</option>
+                    <option value="intermedio">Intermedio (Elo 1000–1500)</option>
+                    <option value="avanzado">Avanzado (Elo 1500–2000)</option>
+                    <option value="experto">Experto (Elo &gt; 2000)</option>
+                </select>
+            </div>
+
+            <div class="form-grupo">
+                <label for="modalidad">Modalidad preferida</label>
+                <select id="modalidad" name="modalidad">
+                    <option value="clasico">Clásico (90 min)</option>
+                    <option value="rapido">Rápido (15 min)</option>
+                    <option value="blitz">Blitz (5 min)</option>
+                    <option value="bullet">Bullet (1 min)</option>
+                </select>
+            </div>
+
+            <div class="form-grupo ancho-completo">
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" placeholder="¿Por qué quieres unirte?"></textarea>
+            </div>
+
+            <div class="form-grupo ancho-completo">
+                <label>Horario</label>
+                <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-top:0.5rem;">
+                    <label class="form-fila-check"><input type="radio" name="horario" value="manana" /> Mañana
+                        (9–12h)</label>
+                    <label class="form-fila-check"><input type="radio" name="horario" value="tarde" /> Tarde
+                        (15–18h)</label>
+                    <label class="form-fila-check"><input type="radio" name="horario" value="noche" /> Noche
+                        (19–21h)</label>
+                </div>
+            </div>
+
+            <div class="form-grupo ancho-completo">
+                <label>Intereses</label>
+                <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-top:0.5rem;">
+                    <label class="form-fila-check"><input type="checkbox" name="interes" value="clases" /> Clases
+                        grupales</label>
+                    <label class="form-fila-check"><input type="checkbox" name="interes" value="torneos" />
+                        Torneos</label>
+                    <label class="form-fila-check"><input type="checkbox" name="interes" value="analisis" /> Análisis de
+                        partidas</label>
+                </div>
+            </div>
+
+            <div class="form-grupo ancho-completo">
+                <label class="form-fila-check">
+                    <input type="checkbox" id="terminos" name="terminos" required />
+                    Acepto los <a href="#" style="color:var(--blanco);">términos y condiciones</a> *
+                </label>
+            </div>
+
+            <div class="form-acciones">
+                <button type="submit" class="btn-principal">Inscribirse</button>
+                <button type="reset" class="btn-secundario">Limpiar</button>
+            </div>
+
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-logo">Ajedrez Real</div>
+        <ul class="footer-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#piezas">Piezas</a></li>
+            <li><a href="#historia">Historia</a></li>
+            <li><a href="#tablero">Tablero</a></li>
+            <li><a href="#inscripcion">Inscripción</a></li>
+            <li><a href="torneos.html">Torneos</a></li>
+            <li><a href="https://www.fide.com" target="_blank" rel="noopener">FIDE ↗</a></li>
+        </ul>
+        <p class="footer-copy">© 2026 Ajedrez</p>
+    </footer>
+
+    <script src="/js/main.js"></script>
+
+</body>
+
+</html>
